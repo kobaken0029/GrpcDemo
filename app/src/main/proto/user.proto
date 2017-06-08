@@ -1,0 +1,88 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.kobaken0029.grpcdemo.proto";
+
+package proto;
+
+enum Sex {
+  MALE = 0;
+  FEMALE = 1;
+};
+
+enum Status {
+  OK = 0;
+  FAIL = 1;
+}
+
+message User {
+  string name = 1;
+  int32 age = 2;
+  Sex sex = 3;
+}
+
+message CreateRequest {
+  string name = 1;
+  int32 age = 2;
+  Sex sex = 3;
+}
+
+message CreateResponse {
+  Status status = 1;
+  string message = 2;
+}
+
+message GetRequest {
+  string name = 1;
+}
+
+message GetResponse {
+  Status status = 1;
+  string message = 2;
+  User user = 3;
+}
+
+message GetAllRequest {}
+
+message GetAllResponse {
+  Status status = 1;
+  string message = 2;
+  repeated User users = 3;
+}
+
+message UpdateRequest {
+  string name = 1;
+  int32 age = 2;
+  Sex sex = 3;
+}
+
+message UpdateResponse {
+  Status status = 1;
+  string message = 2;
+}
+
+message DeleteRequest {
+  string name = 1;
+}
+
+message DeleteResponse {
+  Status status = 1;
+  string message = 2;
+}
+
+
+service UserService {
+  // CREATE
+  rpc Create(CreateRequest) returns (CreateResponse);
+
+  // READ
+  rpc Get(GetRequest) returns (GetResponse);
+  rpc GetAll(GetAllRequest) returns (GetAllResponse);
+
+  // UPDATE
+  rpc Update(UpdateRequest) returns (UpdateResponse);
+
+  // DELETE
+  rpc Delete(DeleteRequest) returns (DeleteResponse);
+}
+
