@@ -1,4 +1,4 @@
-package com.kobaken0029.gprcdemo;
+package com.kobaken0029.grpcdemo;
 
 import org.junit.Test;
 
